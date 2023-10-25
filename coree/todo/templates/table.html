@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class='container' >
+
+<table class="table" style="float:left; width:33%;">
+    <thead>
+      <tr>
+        <th scope="col">tasks</th>
+        <th scope="col" style="width:10%"></th>
+        
+      </tr>
+      
+    </thead>
+    <tbody>
+        
+        {% for ele in tasks %}
+      <tr>
+        
+        <td>{{ele.content}}</td>
+        <td><a href="{% url 'moveInProgress' ele.id %}"class='btn btn-warning'>></a></td>
+        
+        
+        
+      </tr>
+      
+      
+      {% endfor %}
+      <tr>
+        <th><form method='post'>{% csrf_token %}<input type='text' name='task'></input><button type="submit" class="btn btn-primary mb-3">add</button></th>
+        
+        
+      </tr>
+
+      
+    </tbody>
+
+  </table>
+  <table class="table" style="float:left; width:33%;">
+    <thead>
+      <tr>
+        
+        <th scope="col">in progress</th>
+        <th scope="col" style="width:10%"></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        
+        {% for ele in inProgress %}
+      <tr>
+        
+        <td>{{ele.content}}</td>
+        <td><a href="{% url 'moveComplete' ele.id %}" class='btn btn-warning'>></a></td>
+        
+        
+      </tr>
+      
+      {% endfor %}
+
+      
+    </tbody>
+
+  </table >
+  <table class="table" style="float:left; width:33%;">
+    <thead>
+      <tr>
+   
+        <th scope="col">completed</th>
+        <th scope="col" style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        
+        {% for ele in complete %}
+      <tr>
+        
+        <td>{{ele.content}}</td>
+        <td><a href="{% url 'deleteTask' ele.id %}"class='btn btn-warning'>x</a></td>
+        
+        
+      </tr>
+      
+      {% endfor %}
+
+      
+    </tbody>
+
+  </table>
+
+  
+</div>
+
+
+
+
+
+
+{% endblock %}
